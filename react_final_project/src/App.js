@@ -1,23 +1,28 @@
 import './App.css';
-/* import { useState, useEffect, createContext } from "react"; */
-import { BrowserRouter, Route, NavLink } from "react-router-dom";
+import { useState, createContext } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
-import LogIn from "./pages/LogIn";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import MainPage from "./pages/MainPage";
+import Recipes from "./pages/Recipes";
+
+export const GlobalContext = createContext({});
 
 function App() {
+
+  const [token, setToken] = useState("");
+
   return (
     <>
       <BrowserRouter>
-        {/* <nav className="navbar bg-light d-flex align-items-end">
-          <ul className="nav">
-            <li className="nav-item"><NavLink className="nav-link" activeClassName="" to="/">Home</NavLink></li>
-          </ul>
-        </nav> */}
-
-        <Route exact path="/" component={Home}/>
-        <Route path="/signup" component={SignUp}/>
-        <Route path="/login" component={LogIn}/>
+        <GlobalContext.Provider value={{token, setToken}}>
+          <Route exact path="/" component={Home}/>
+          <Route path="/signup" component={Signup}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/generator" component={MainPage}/>
+          <Route path="/recipes" component={Recipes}/>
+        </GlobalContext.Provider>
       </BrowserRouter>
     </>
   );

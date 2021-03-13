@@ -1,0 +1,54 @@
+.generator-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.form-filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.meals-filters {
+    display: flex;
+    flex-direction: column;
+}
+
+.diet-filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+}
+
+.diet {
+    height: 105px;
+    width: 105px;
+    background-color: white;
+    border-radius: 7px;
+    margin: 0;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 12%);
+}
+
+.generator-form-btn {
+    background: #9fd871;
+    color: white;
+    padding: 10px 16px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    border: none;    
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 20px;
+    height: 40px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: all 200ms ease;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 45%);
+}
+
+.generator-form-btn:hover {
+    opacity: 0.5;
+}

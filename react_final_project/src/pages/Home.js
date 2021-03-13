@@ -1,11 +1,11 @@
-import Home from '../components/Home';
+import HomeMainContainer from '../components/HomeMainContainer';
 
-function HomePage() {
+function Home() {
   return (
-    <div>
-      <Home />
-    </div>
+      <div>
+        <HomeMainContainer />
+      </div>    
   );
 }
 
-export default HomePage;
+export default Home;

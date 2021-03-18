@@ -10,7 +10,9 @@ export default function LoginForm() {
     let history = useHistory();
 
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");  
+    const [password, setPassword] = useState("");
+    const [disabled, setDisabled] = useState(true);
+
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -37,7 +39,7 @@ export default function LoginForm() {
         })
         .catch(error => {
             console.log('Error: ', error);
-            document.getElementById('error-msg').classList.remove('hidden');
+            setDisabled(!disabled);
             }
         );
     };
@@ -66,7 +68,7 @@ export default function LoginForm() {
                         <input type="password" className="text-input" id="user_password" name="userPasswordInput" value={password} onChange={handlePassword}/>
                     </fieldset>
                 </div>
-                <span id="error-msg" className="error-msg hidden">Invalid email or password</span>
+                <span disabled={disabled} className="error-msg">Invalid email or password</span>
                 <button type="submit" className="form-btn">Sign In</button>                                                        
             </form>
         </div>

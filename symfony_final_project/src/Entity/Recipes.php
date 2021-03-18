@@ -50,15 +50,35 @@ class Recipes
     private $recipeMeals;
 
     /**
-     * @ORM\OneToMany(targetEntity=RecipeDiets::class, mappedBy="recipe", orphanRemoval=true)
+     * @ORM\Column(type="boolean")
      */
-    private $recipeDiets;
+    private $anything;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $vegetarian;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $vegan;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $glutenfree;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $dairyfree;
+    
 
     public function __construct()
     {
         $this->recipeIngredients = new ArrayCollection();
         $this->recipeMeals = new ArrayCollection();
-        $this->recipeDiets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -174,32 +194,62 @@ class Recipes
         return $this;
     }
 
-    /**
-     * @return Collection|RecipeDiets[]
-     */
-    public function getRecipeDiets(): Collection
+    public function getAnything(): ?bool
     {
-        return $this->recipeDiets;
+        return $this->anything;
     }
 
-    public function addRecipeDiet(RecipeDiets $recipeDiet): self
+    public function setAnything(bool $anything): self
     {
-        if (!$this->recipeDiets->contains($recipeDiet)) {
-            $this->recipeDiets[] = $recipeDiet;
-            $recipeDiet->setRecipe($this);
-        }
+        $this->anything = $anything;
 
         return $this;
     }
 
-    public function removeRecipeDiet(RecipeDiets $recipeDiet): self
+    public function getVegetarian(): ?bool
     {
-        if ($this->recipeDiets->removeElement($recipeDiet)) {
-            // set the owning side to null (unless already changed)
-            if ($recipeDiet->getRecipe() === $this) {
-                $recipeDiet->setRecipe(null);
-            }
-        }
+        return $this->vegetarian;
+    }
+
+    public function setVegetarian(bool $vegetarian): self
+    {
+        $this->vegetarian = $vegetarian;
+
+        return $this;
+    }
+
+    public function getVegan(): ?bool
+    {
+        return $this->vegan;
+    }
+
+    public function setVegan(bool $vegan): self
+    {
+        $this->vegan = $vegan;
+
+        return $this;
+    }
+
+    public function getGlutenfree(): ?bool
+    {
+        return $this->glutenfree;
+    }
+
+    public function setGlutenfree(bool $glutenfree): self
+    {
+        $this->glutenfree = $glutenfree;
+
+        return $this;
+    }
+
+    public function getDairyfree(): ?bool
+    {
+        return $this->dairyfree;
+    }
+
+    public function setDairyfree(bool $dairyfree): self
+    {
+        $this->dairyfree = $dairyfree;
 
         return $this;
     } 

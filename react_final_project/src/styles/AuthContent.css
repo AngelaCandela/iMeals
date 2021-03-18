@@ -79,6 +79,6 @@ input.text-input:hover {
     color: red;
 }
 
-.hidden {
+span.error-msg[disabled] {
     display: none;
 }

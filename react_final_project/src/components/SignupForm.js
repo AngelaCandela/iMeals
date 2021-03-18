@@ -10,6 +10,7 @@ export default function SignupForm() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [disabled, setDisabled] = useState(true);
 
     const handleSignup = (event) => {
         event.preventDefault();
@@ -61,7 +62,7 @@ export default function SignupForm() {
         })
         .catch(error => {
             console.log('Error: ', error);
-            document.getElementById('error-msg').classList.remove('hidden');
+            setDisabled(!disabled);
             }
         );
     };
@@ -112,7 +113,7 @@ export default function SignupForm() {
                         <input type="password" className="text-input" id="user_password" name="userPasswordInput" value={password} onChange={handlePassword}/>
                     </fieldset>
                 </div>
-                <span id="error-msg" className="error-msg hidden">The email address entered is already being used. Please select another one or login.</span>
+                <span disabled={disabled} className="error-msg">The email address entered is already being used. Please select another one or login.</span>
                 <button type="submit" className="form-btn">Create Account</button>                                                        
             </form>
         </div>

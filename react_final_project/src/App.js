@@ -12,11 +12,12 @@ export const GlobalContext = createContext({});
 function App() {
 
   const [token, setToken] = useState("");
+  const [recipes, setRecipes] = useState([]);
 
   return (
     <>
       <BrowserRouter>
-        <GlobalContext.Provider value={{token, setToken}}>
+        <GlobalContext.Provider value={{token, setToken, recipes, setRecipes}}>
           <Route exact path="/" component={Home}/>
           <Route path="/signup" component={Signup}/>
           <Route path="/login" component={Login}/>

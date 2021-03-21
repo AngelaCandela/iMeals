@@ -1,0 +1,26 @@
+div[disabled] {
+    display: none;
+}
+
+img.sneakPic {
+    width: 70px;
+    margin: 10px 20px;
+}
+
+.mealplan {
+    display: flex;
+    flex-direction: column;    
+    padding: 0 20px;
+    width: auto;
+    box-sizing: border-box;
+    position: fixed;
+    background-color: white;
+    padding: 20px;
+    border-radius: 7px;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 25%);
+}
+.mealplan-recipe {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}

@@ -86,14 +86,14 @@ class RecipesController extends AbstractController
         $body = $req->getContent(); // body: JSON.stringify(...);
         $jsonContent = json_decode($body);
         $diets = $jsonContent->diets;
-        $mainMealsNum = $jsonContent->mainMealsNum;
-        $breakfastsNum = $jsonContent->breakfastsNum;        
-        
-        $mainsEntities = $repo->findMainRecipesForNewMp($em, $diets, $mainMealsNum);
+        $breakfastsNum = $jsonContent->breakfastsNum;
+        $mainMealsNum = $jsonContent->mainMealsNum;        
+
         $breakfastsEntities = $repo->findBreakfastRecipesForNewMp($em, $diets, $breakfastsNum);
-        
+        $mainsEntities = $repo->findMainRecipesForNewMp($em, $diets, $mainMealsNum);
+                
+        $breakfasts = $this->serializeRecipes($breakfastsEntities);
         $mains = $this->serializeRecipes($mainsEntities);        
-        $breakfasts = $this->serializeRecipes($breakfastsEntities);        
         
         return $this->json([$breakfasts, $mains]);
     }

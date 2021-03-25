@@ -1,28 +1,26 @@
 import './App.css';
-import { useState, createContext } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import MainPage from "./pages/MainPage";
+import UserMealPlans from "./pages/UserMealPlans";
 import Recipes from "./pages/Recipes";
+import RecipeDetails from "./pages/RecipeDetails";
 
-export const GlobalContext = createContext({});
 
 function App() {
 
-  const [token, setToken] = useState("");
-
   return (
     <>
-      <BrowserRouter>
-        <GlobalContext.Provider value={{token, setToken}}>
-          <Route exact path="/" component={Home}/>
-          <Route path="/signup" component={Signup}/>
-          <Route path="/login" component={Login}/>
-          <Route path="/generator" component={MainPage}/>
-          <Route path="/recipes" component={Recipes}/>
-        </GlobalContext.Provider>
+      <BrowserRouter>        
+        <Route exact path="/" component={Home}/>
+        <Route path="/signup" component={Signup}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/generator" component={MainPage}/>
+        <Route path="/my-plans" component={UserMealPlans}/>
+        <Route exact path="/recipes" component={Recipes}/>
+        <Route path="/recipes" component={RecipeDetails}/>
       </BrowserRouter>
     </>
   );

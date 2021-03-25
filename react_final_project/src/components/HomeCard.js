@@ -1,19 +1,5 @@
 import "../styles/HomeCard.css";
 
-// export default function HomeCard() {
-//     return (
-//         <div className="card text-center">
-//             <div className="card-img-top d-flex justify-content-center">
-//                 <div className="card-circle icon-1"></div>
-//             </div>
-//             <div className="card-body">
-//                 <h5 className="card-title">Title</h5>
-//                 <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam aspernatur quisquam repudiandae rerum sit tempora, deleniti distinctio obcaecati autem vitae.</p>
-//             </div>
-//         </div>
-//     )
-// }
-
 class Card {
     constructor(img, title, text) {
         this.img = img;

@@ -1,13 +1,13 @@
-export default function SelectedRecipes({ title, recipes }) {   
+export default function SelectedRecipes({ title, recipes }) { 
     
     return (
         <div>
             <h4>{title}</h4>
-            <ul className="mealplan-recipe">
-                {recipes.map((recipe, index) => {                    
-                    return  <div key={index}>
+            <ul className="selected-recipe">
+                {recipes.map((recipe) => {                    
+                    return  <div key={recipe.id}>
                                 <img src={'http://localhost:8000/recipes/'+recipe.img} className="sneakPic" alt="img"/>
-                                <a href="#">{recipe.name}</a>
+                                <p>{recipe.name}</p>
                             </div>        
                 })
                 }

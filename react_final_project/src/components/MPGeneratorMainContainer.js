@@ -24,7 +24,7 @@ export default function MPGeneratorMainContainer() {
     const [breakfasts, setBreakfasts] = useState([]);
     const [mainMeals, setMainMeals] = useState([]);
     const [disabled, setDisabled] = useState(true);
-
+    
     return (
         <div className="generator-main-container">
             <Nav />

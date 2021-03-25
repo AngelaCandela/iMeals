@@ -1,4 +1,4 @@
-import "../styles/AuthSidebar.css";
+import "../styles/Sidebars.css";
 
 export default function AuthSidebar({ className }) {
     return (

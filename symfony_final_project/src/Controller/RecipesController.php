@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\RecipesRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Service\SerializeRecipesService;
 
 
 class RecipesController extends AbstractController
@@ -15,69 +16,44 @@ class RecipesController extends AbstractController
     /**
      * @Route("/recipes", name="recipes")
      */
-    public function index(RecipesRepository $repo): Response
+    public function index(RecipesRepository $repo, SerializeRecipesService $serializer): Response
     {
         $recipesEntities = $repo->findAll();
 
-        $recipes = $this->serializeRecipes($recipesEntities);
+        $recipes = $serializer->serializeRecipes($recipesEntities);
 
         return $this->json($recipes);
-    }                              
-    
-    public function serializeRecipes($recipesEntities): Array
-    {
-        $recipes = [];
-        foreach($recipesEntities as $recipeEntity){
-            $recipe = [];
-            $recipe['id'] = $recipeEntity->getId();
-            $recipe['name'] = $recipeEntity->getRecipeName();
-            $recipe['method'] = $recipeEntity->getRecipeMethod();
-            $recipe['prepTime'] = $recipeEntity->getRecipePrepTime();
-            $recipe['img'] = $recipeEntity->getRecipeImg();
-            $recipe['anything'] = $recipeEntity->getAnything();
-            $recipe['vegetarian'] = $recipeEntity->getVegetarian();
-            $recipe['vegan'] = $recipeEntity->getVegan();
-            $recipe['glutenfree'] = $recipeEntity->getGlutenfree();
-            $recipe['dairyfree'] = $recipeEntity->getDairyfree();
-            
-            $recipe['ingredients'] = $this->serializeIngredients($recipeEntity);            
-            $recipe['meals'] = $this->serializeMeals($recipeEntity);
-
-            $recipes[] = $recipe;
-        }
-
-        return $recipes;
-    }
-    
-    public function serializeIngredients($recipeEntity): Array
-    {
-        $ingredients = [];
-        $recipeIngredientsEntities = $recipeEntity->getRecipeIngredients();
-        foreach($recipeIngredientsEntities as $recipeIngredientEntity){
-            $set = [];
-            $set['ingredient'] = $recipeIngredientEntity->getIngredient()->getIngredientName();
-            $set['amount'] = $recipeIngredientEntity->getAmount();
-            $set['unit'] = $recipeIngredientEntity->getUnit();
-            $ingredients[] = $set;
-        }
-        return $ingredients;
     }
 
-    public function serializeMeals($recipeEntity): Array
+    /**
+     * @Route("/recipe/{id}", name="show-recipe")
+     */
+    public function showRecipe($id, RecipesRepository $repo, SerializeRecipesService $serializer): Response
     {
-        $meals = [];
-        $recipeMealsEntities = $recipeEntity->getRecipeMeals();
-        foreach($recipeMealsEntities as $recipeMealEntity){
-            $meal = $recipeMealEntity->getRecipeMeal();
-            $meals[] = $meal;
-        }
-        return $meals;
+        $recipeEntity = $repo->find($id);
+
+        $recipe = [];        
+        $recipe['id'] = $recipeEntity->getId();
+        $recipe['name'] = $recipeEntity->getRecipeName();
+        $recipe['method'] = $recipeEntity->getRecipeMethod();
+        $recipe['prepTime'] = $recipeEntity->getRecipePrepTime();
+        $recipe['img'] = $recipeEntity->getRecipeImg();
+        $recipe['anything'] = $recipeEntity->getAnything();
+        $recipe['vegetarian'] = $recipeEntity->getVegetarian();
+        $recipe['vegan'] = $recipeEntity->getVegan();
+        $recipe['glutenfree'] = $recipeEntity->getGlutenfree();
+        $recipe['dairyfree'] = $recipeEntity->getDairyfree();
+        
+        $recipe['ingredients'] = $serializer->serializeIngredients($recipeEntity);            
+        $recipe['meals'] = $serializer->serializeMeals($recipeEntity);
+        
+        return $this->json($recipe);
     }
 
     /**
      * @Route("/find-recipes-for-new-mp", name="recipes-for-new-mp")
      */
-    public function findRecipesByCriteria(RecipesRepository $repo, Request $req, EntityManagerInterface $em): Response
+    public function findRecipesByCriteria(RecipesRepository $repo, Request $req, EntityManagerInterface $em, SerializeRecipesService $serializer): Response
     {
         // $diet = $req->query->get('diet');  // ?diet=gluten-free
         // $mainMealsNum = $req->request->get('mainMealsNum');// new FormData()  append('mainMealsNum', 3)
@@ -92,9 +68,9 @@ class RecipesController extends AbstractController
         $breakfastsEntities = $repo->findBreakfastRecipesForNewMp($em, $diets, $breakfastsNum);
         $mainsEntities = $repo->findMainRecipesForNewMp($em, $diets, $mainMealsNum);
                 
-        $breakfasts = $this->serializeRecipes($breakfastsEntities);
-        $mains = $this->serializeRecipes($mainsEntities);        
+        $breakfasts = $serializer->serializeRecipes($breakfastsEntities);
+        $mains = $serializer->serializeRecipes($mainsEntities);        
         
         return $this->json([$breakfasts, $mains]);
-    }
+    }    
 }

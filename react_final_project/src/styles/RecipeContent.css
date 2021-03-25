@@ -1,0 +1,16 @@
+.recipe-content {
+    height: 100%;
+    min-height: 100vh;
+    width: 55%;
+    padding: 20px;
+}
+
+.recipe-img {    
+    padding: 0 20px 20px 0;
+}
+
+.recipe-top-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

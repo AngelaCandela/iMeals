@@ -5,7 +5,7 @@ import veganicon from "../images/vegan.png";
 import glutenfreeicon from "../images/gluten-free.png";
 import dairyfreeicon from "../images/dairy-free.png";
 
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { MPContext } from "./MPGeneratorMainContainer";
 
 export default function GeneratorForm() {
@@ -31,23 +31,28 @@ export default function GeneratorForm() {
     }
     
     const handleAnything = () => {
-        dietSet.anything = !dietSet.anything;        
+        dietSet.anything = !dietSet.anything;
+        document.getElementById('anything').classList.toggle('clicked');    
     }
 
     const handleVegetarian = () => {
         dietSet.vegetarian = !dietSet.vegetarian;
+        document.getElementById('vegetarian').classList.toggle('clicked');
     }
 
     const handleVegan = () => {
         dietSet.vegan = !dietSet.vegan;
+        document.getElementById('vegan').classList.toggle('clicked');
     }
 
     const handleGlutenfree = () => {
         dietSet.glutenfree = !dietSet.glutenfree;
+        document.getElementById('gluten-free').classList.toggle('clicked');
     }
 
     const handleDairyfree = () => {
-        dietSet.dairyfree = !dietSet.dairyfree; 
+        dietSet.dairyfree = !dietSet.dairyfree;
+        document.getElementById('dairy-free').classList.toggle('clicked');
     }
 
     if (diets) dietSet = diets
@@ -93,6 +98,8 @@ export default function GeneratorForm() {
                         <option value="2">Two</option>
                         <option value="3">Three</option>
                         <option value="4">Four</option>
+                        <option value="5">Five</option>
+                        <option value="6">Six</option>
                     </select>                    
                 </div>
                 <div className="diet-filters">

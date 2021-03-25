@@ -39,7 +39,7 @@ export default function SignupForm() {
 
             fetch('http://localhost:8000/login', {
                 method: 'POST',
-                mode: 'cors',
+                cors: 'CORS',
                 headers: {
                     'Content-Type': 'application/json'
                 },

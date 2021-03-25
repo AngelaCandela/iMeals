@@ -5,22 +5,44 @@ div[disabled] {
 img.sneakPic {
     width: 70px;
     margin: 10px 20px;
+    border-radius: 7px;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 25%);
 }
 
 .mealplan {
     display: flex;
     flex-direction: column;    
-    padding: 0 20px;
+    padding: 20px;
     width: auto;
     box-sizing: border-box;
+    position: relative;
     position: fixed;
     background-color: white;
-    padding: 20px;
     border-radius: 7px;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 25%);
 }
-.mealplan-recipe {
+
+.selected-recipe {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
+}
+
+.close-btn {
+    background: none;
+    color: rgb(219, 72, 72);
+    border: none;    
+    border-radius: 4px;
+    height: 30px;
+    width: 30px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: all 200ms ease;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 45%);
+
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    margin: 0;
+    padding: 0;
 }

@@ -19,6 +19,18 @@ class MealPlansRepository extends ServiceEntityRepository
         parent::__construct($registry, MealPlans::class);
     }
 
+    public function findMealPlan($em, $mealplanId, $userId) {
+
+        $query = $em->createQuery('SELECT mp FROM App\Entity\MealPlans mp WHERE mp.id = ?1 AND mp.user = ?2');
+        
+        $query->setParameter(1, $mealplanId);
+        $query->setParameter(2, $userId);
+        
+        $mealplan = $query->getResult();
+        
+        return $mealplan;
+    }
+
     // /**
     //  * @return MealPlans[] Returns an array of MealPlans objects
     //  */

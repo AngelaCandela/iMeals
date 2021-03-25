@@ -1,8 +1,11 @@
 import { useHistory } from "react-router-dom";
 import "../styles/Nav.css";
+import logo from "../images/white_logo_transparent_background.png";
 
 
 export default function Nav() {
+    
+    const token = localStorage.getItem('token');
 
     let history = useHistory();
 
@@ -11,16 +14,34 @@ export default function Nav() {
         history.push(e.target.id);
     };
 
-    return (
-        <nav className="main-nav">
-            <a className="brand" href="#">iMeals</a>
-            <ul>
-                <li><a href="#" id="/" onClick={redirect}>Home</a></li>                
-                <li><a href="#" id="/login" onClick={redirect}>Login</a></li>
-                <li><a href="#" id="/signup" onClick={redirect}>Sign Up</a></li>
-                <li><a href="#" id="/user/mealplans" onClick={redirect}>My Plans</a></li>
-                <li><a href="#" id="/user/settings" onClick={redirect}>Settings</a></li>
-            </ul>                
-        </nav>
-    )
+    function handleLogout(e) {
+        e.preventDefault();
+        localStorage.removeItem('token');
+        history.push("/");
+    };
+    if(token) {
+        return (
+            <nav className="main-nav">
+                <a className="brand" href="#"><img src={logo} alt=""/></a>
+                <ul>
+                    <li><a href="#" id="/" onClick={redirect}>Home</a></li>
+                    <li><a href="#" id="/my-plans" onClick={redirect}>My Plans</a></li>
+                    <li><a href="#" id="/settings" onClick={redirect}>Settings</a></li>
+                    <li><a href="#" onClick={handleLogout}>Log out</a></li>
+                </ul>                
+            </nav>
+        )
+    }else {
+        return (
+            <nav className="main-nav">
+                <a className="brand" href="#"><img src={logo} alt=""/></a>
+                <ul>
+                    <li><a href="#" id="/" onClick={redirect}>Home</a></li>                
+                    <li><a href="#" id="/login" onClick={redirect}>Login</a></li>
+                    <li><a href="#" id="/signup" onClick={redirect}>Sign Up</a></li>
+                </ul>                
+            </nav>
+        )
+    }
+    
 }

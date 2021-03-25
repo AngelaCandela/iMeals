@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Recipes;
-use App\Entity\RecipeDiets;
 use App\Entity\RecipeMeals;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -41,25 +40,19 @@ class RecipesRepository extends ServiceEntityRepository
 
         $mainMealsQuery = $em->createQuery('SELECT r FROM App\Entity\Recipes r JOIN r.recipeMeals m WHERE (m.recipeMeal = ?1 OR m.recipeMeal = ?2) '.$var);
         
-        $tryQuery = 'SELECT r FROM App\Entity\Recipes r, 
-        (SELECT rd FROM App\Entity\RecipeDiets rd WHERE rd.recipeDiet = "vegetarian") vegetarian, 
-        (SELECT rd FROM App\Entity\RecipeDiets rd WHERE rd.recipeDiet = "vegan") vegan 
-        JOIN r.recipeMeals m WHERE (m.recipeMeal = ?2 OR m.recipeMeal = ?3) 
-        AND r.id === vegetarian.recipe AND r.id === vegan.recipe';
-                
         $mainMealsQuery->setParameter(1, 'lunch');
         $mainMealsQuery->setParameter(2, 'dinner');
         
         $mains = $mainMealsQuery->getResult();        
         shuffle($mains); // ordenando aleatoriamente el array
 
-        $counter = 0; // coger los X primeros según $mainMealsNum
+        $count = 0; // coger los X primeros según $mainMealsNum
         $selectedMains = [];
         foreach($mains as $main){
-          if($counter < $mainMealsNum){
+          if($count < $mainMealsNum){
             $selectedMains[] = $main;
           }
-          $counter++;
+          $count++;
         }
         
         return $selectedMains;
@@ -89,13 +82,13 @@ class RecipesRepository extends ServiceEntityRepository
         $breakfasts = $breakfastsQuery->getResult();
         shuffle($breakfasts);
 
-        $counter = 0; // coger los X primeros según $breakfastsNum
+        $count = 0;
         $selectedBreakfasts = [];
         foreach($breakfasts as $breakfast){
-          if($counter < $breakfastsNum){
+          if($count < $breakfastsNum){
             $selectedBreakfasts[] = $breakfast;
           }
-          $counter++;
+          $count++;
         }
         
         return $selectedBreakfasts;

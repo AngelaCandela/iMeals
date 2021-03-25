@@ -1,10 +1,9 @@
-import { useState, useEffect, useContext } from "react";
-import { GlobalContext } from "../App";
+import { useState, useEffect } from "react";
 
 function Recipes() {    
 
     const [recipes, setRecipes] = useState([]);
-    const { token } = useContext(GlobalContext);
+    const token = localStorage.getItem('token');
     const config = {
         headers: {
           'Authorization': `Bearer ${token}`

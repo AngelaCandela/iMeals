@@ -1,12 +1,9 @@
-import { useState, useContext } from "react";
-import { GlobalContext } from "../App";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "../styles/AuthContent.css";
 
 export default function LoginForm() {
 
-    const { setToken } = useContext(GlobalContext);
-    
     let history = useHistory();
 
     const [email, setEmail] = useState("");
@@ -19,7 +16,7 @@ export default function LoginForm() {
 
         fetch('http://localhost:8000/login', {
             method: 'POST',
-            mode: 'cors',
+            cors: 'CORS',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -28,13 +25,10 @@ export default function LoginForm() {
         .then(response => {
             if(!response.ok)
                 throw new Error(`Something went wrong: ${response.statusText}`);
-            console.log(response.statusText);
             return response.json();
         })
         .then(response => {
-            console.log('You are logged in! ', response);
-            setToken(response.token);
-
+            localStorage.setItem('token', response.token);
             history.push("/generator");
         })
         .catch(error => {

@@ -8,12 +8,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Users;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UsersRepository;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
     /**
-     * @Route("/signup", name="signup")
+     * @Route("/signup", name="signup", methods={"POST"})
      */
     public function register(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $encoder): Response
     {
@@ -42,5 +43,20 @@ class UserController extends AbstractController
         $response['userRoles'] = $user->getRoles();
 
         return $this->json($response);
+    }
+
+    /**
+     * @Route("/find-user-first-name", name="find-user-first-name", methods={"POST"})
+     */
+    public function findUserFirstName(UsersRepository $repo, Request $req): Response
+    {
+        $body = $req->getContent();
+        $jsonContent = json_decode($body);
+        $username = $jsonContent->username;
+
+        $userEntity = $repo->findOneBy(array('email' => $username));
+        $userFirstName = $userEntity->getFirstName();
+
+        return $this->json($userFirstName);
     }
 }

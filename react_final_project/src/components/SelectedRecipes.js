@@ -2,7 +2,7 @@ export default function SelectedRecipes({ title, recipes }) {
     
     return (
         <div>
-            <h4>{title}</h4>
+            <h4 className="text-center">{title}</h4>
             <ul className="selected-recipe">
                 {recipes.map((recipe) => {                    
                     return  <div key={recipe.id}>

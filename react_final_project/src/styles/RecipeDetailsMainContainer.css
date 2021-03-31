@@ -4,11 +4,17 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between;;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
 }
 
 .recipe-details-content {
     height: 100%;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 100px;
 }

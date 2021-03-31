@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import "../styles/AuthContent.css";
 
 export default function LoginForm() {
@@ -29,7 +30,11 @@ export default function LoginForm() {
         })
         .then(response => {
             localStorage.setItem('token', response.token);
-            history.push("/generator");
+
+            let decoded = jwt_decode(response.token);
+            console.log(decoded);
+            localStorage.setItem('user', decoded.username);
+            findUserFirstName(decoded.username);            
         })
         .catch(error => {
             console.log('Error: ', error);
@@ -45,6 +50,28 @@ export default function LoginForm() {
     const handlePassword = (event) => {
         setPassword(event.target.value);
     }
+
+    const findUserFirstName = (username) => {
+
+        fetch('http://localhost:8000/find-user-first-name', {
+            method: 'POST',
+            cors: 'CORS',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username: username}),
+        })
+        .then(response => {
+            if(!response.ok)
+                throw new Error(`Something went wrong: ${response.statusText}`);
+            return response.json();
+        })
+        .then(response => {
+            localStorage.setItem('user_first_name', response);
+            history.push("/generator");
+        })
+        .catch(error => console.log('Error: ', error));
+    };
 
     return (
         <div className="auth-content">

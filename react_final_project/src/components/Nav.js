@@ -17,6 +17,8 @@ export default function Nav() {
     function handleLogout(e) {
         e.preventDefault();
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('user_first_name');
         history.push("/");
     };
     if(token) {
@@ -24,9 +26,8 @@ export default function Nav() {
             <nav className="main-nav">
                 <a className="brand" href="#"><img src={logo} alt=""/></a>
                 <ul>
-                    <li><a href="#" id="/" onClick={redirect}>Home</a></li>
+                    <li><a href="#" id="/generator" onClick={redirect}>Home</a></li>
                     <li><a href="#" id="/my-plans" onClick={redirect}>My Plans</a></li>
-                    <li><a href="#" id="/settings" onClick={redirect}>Settings</a></li>
                     <li><a href="#" onClick={handleLogout}>Log out</a></li>
                 </ul>                
             </nav>

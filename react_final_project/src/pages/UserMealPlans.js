@@ -7,7 +7,7 @@ function UserMealPlans() {
   return (
     <div className="user-mealplans-main-container">
         <Nav />
-        <UserMealPlansList />
+        <UserMealPlansList />        
         <Footer />
     </div>
   );

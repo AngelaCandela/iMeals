@@ -1,12 +1,12 @@
 .home-top-container {
-    height: 40vh;
+    height: 40%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .home-top-left-container {
-    width: 45%;
+    width: 40%;
     height: 100%;
 }
 
@@ -35,7 +35,7 @@
     padding: 10px 16px;
     border: none;    
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 1.2em;
     line-height: 20px;
     height: 40px;
     box-sizing: border-box;

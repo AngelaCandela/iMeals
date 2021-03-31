@@ -14,7 +14,7 @@ export default function HomeNav() {
         <nav className="home-nav">
             <a className="brand" href="#">iMeals</a>
             <ul>
-                <li><a href="#" id="/" onClick={redirect}>Home</a></li>
+                <li><a href="#" id="/generator" onClick={redirect}>Home</a></li>
                 <li><a href="#" id="/login" onClick={redirect}>Login</a></li>
                 <li><a href="#" id="/signup" onClick={redirect}>Sign Up</a></li>
             </ul>                

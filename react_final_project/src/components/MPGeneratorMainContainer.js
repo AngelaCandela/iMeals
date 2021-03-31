@@ -28,6 +28,10 @@ export default function MPGeneratorMainContainer() {
     return (
         <div className="generator-main-container">
             <Nav />
+            {
+                localStorage.getItem('user_first_name') &&             
+                <h1>Hello {localStorage.getItem('user_first_name')}!</h1>
+            }
             <MPContext.Provider value={{diets, setDiets, breakfastsNum, setBreakfastsNum, mainMealsNum, setMainMealsNum, breakfasts, setBreakfasts, mainMeals, setMainMeals, disabled, setDisabled}}>
                 <GeneratorContainer />
                 <MealPlan />

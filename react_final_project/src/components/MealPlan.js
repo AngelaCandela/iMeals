@@ -66,14 +66,16 @@ export default function MealPlan() {
         );
     }
     return (
-        <div className="mealplan" disabled={disabled}>
-            <button type="button" className="close-btn" onClick={() => setDisabled(true)}>X</button>          
-            <SelectedRecipes title="Breakfasts" recipes={breakfasts}/>
-            <SelectedRecipes title="Main meals" recipes={mainMeals}/>
-            <div className="mealplan-buttons">
-                <button type="submit" className="generator-form-btn" onClick={regenerate}>Regenerate</button>
-                <button type="button" className="generator-form-btn" onClick={saveMealplan}>Save</button>                             
+        <div className="backdrop" disabled={disabled}>
+            <div className="mealplan" disabled={disabled}>
+                <button type="button" className="close-btn" onClick={() => setDisabled(true)}>X</button>
+                <SelectedRecipes title="Breakfasts" recipes={breakfasts}/>
+                <SelectedRecipes title="Main meals" recipes={mainMeals}/>
+                <div className="mealplan-buttons">
+                    <button type="submit" className="mealplan-btn" onClick={regenerate}>Regenerate</button>
+                    <button type="button" className="mealplan-btn" onClick={saveMealplan}>Save</button>
+                </div>
             </div>
         </div>
-    )
+)
 }

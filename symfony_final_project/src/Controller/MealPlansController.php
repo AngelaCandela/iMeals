@@ -86,7 +86,7 @@ class MealPlansController extends AbstractController
     /**
      * @Route("/shopping-list", name="shopping-list", methods={"POST"})
      */
-    public function ShoppingList(MealPlansRepository $repo, EntityManagerInterface $em, Request $req, SerializeRecipesService $serializer): Response
+    public function shoppingList(MealPlansRepository $repo, EntityManagerInterface $em, Request $req, SerializeRecipesService $serializer): Response
     {
         $body = $req->getContent();
         $jsonContent = json_decode($body);
@@ -116,5 +116,22 @@ class MealPlansController extends AbstractController
         }
 
         return $this->json($ingredients);
-    }  
+    }
+
+    /**
+     * @Route("/delete-mealplan", name="delete-mealplan", methods={"POST"})
+     */
+    public function deleteMealplan(MealPlansRepository $repo, EntityManagerInterface $em, Request $req): Response
+    {
+        $body = $req->getContent();
+        $jsonContent = json_decode($body);
+        $mealplanId = $jsonContent->mealplanId;
+
+        $mealplanEntity = $repo->find($mealplanId);
+
+        $em->remove($mealplanEntity);
+        $em->flush();       
+
+        return $this->json('mealplan deleted successfully');
+    }
 }

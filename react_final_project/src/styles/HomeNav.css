@@ -1,5 +1,6 @@
-.home-nav {
-    background-color: #bfa691;
+.home-nav {    
+    background-color: #a6c591;
+    /* background-color: #bfa691; */
     display: flex;
     justify-content: space-between;
     align-items: center;

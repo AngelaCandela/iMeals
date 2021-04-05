@@ -54,8 +54,7 @@ div[disabled] {
 }
 
 .shopping-list strong {
-    text-transform: capitalize;
-    
+    text-transform: capitalize;    
 }
 
 .shopping-list-btn {
@@ -78,4 +77,22 @@ div[disabled] {
 
 .shopping-list-btn:hover {
     opacity: 0.5;
+}
+
+.to-print-container {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: aquamarine;
+}
+
+.to-print-list {
+    font-size: 1.2em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    list-style: none;
+}
+.to-print-list-item strong {
+    text-transform: capitalize;
 }

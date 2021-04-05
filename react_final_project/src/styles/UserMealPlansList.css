@@ -22,6 +22,13 @@
 
 .mealplan-recipes-list-title {
     margin-left: 20px;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.mealplan-recipes-hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .mealplan-recipes-list {

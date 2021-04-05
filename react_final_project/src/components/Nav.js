@@ -21,6 +21,7 @@ export default function Nav() {
         localStorage.removeItem('user_first_name');
         history.push("/");
     };
+
     if(token) {
         return (
             <nav className="main-nav">

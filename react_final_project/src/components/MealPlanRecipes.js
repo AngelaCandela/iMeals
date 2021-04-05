@@ -13,6 +13,7 @@ export default function MealPlanRecipes({ title, recipes }) {
     return (
         <div>
             <h5 className="mealplan-recipes-list-title">{title}</h5>
+            <hr className="mealplan-recipes-hr"/>
             <ul className="mealplan-recipes-list">
                 {recipes.map((recipe) => {                    
                     return  <div key={recipe.id}>

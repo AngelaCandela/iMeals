@@ -8,7 +8,8 @@
     background: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
-    align-items: center;   
+    align-items: center; 
+    z-index: 1;  
 }
 
 div[disabled] {
@@ -16,7 +17,7 @@ div[disabled] {
 }
 
 img.sneakPic {
-    width: 100px;
+    width: 95px;
     margin: 10px 20px;
     border-radius: 7px;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 25%);
@@ -25,26 +26,36 @@ img.sneakPic {
 .mealplan {
     display: flex; 
     flex-direction: column;  
-    padding: 40px;
+    padding: 35px;
+    padding-top: 45px;
     box-sizing: border-box;
     position: relative;
     position: absolute;
-    
-    z-index: 1;
+
     background-color: white;
     border-radius: 7px;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 25%);
 }
 
-.selected-recipe {
+.selected-recipes-title {
+    margin-left: 20px;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.selected-recipes-hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.selected-recipes-list {
     padding-left: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
 }
 
-.selected-recipe p{
-    max-width: 140px;
+.selected-recipes-list p{
     width: 100px;
     margin: 0 20px;
 }
@@ -59,7 +70,7 @@ img.sneakPic {
     width: 60%;
     color: white;
     padding: 10px 16px;
-    margin-top: 20px;
+    margin-top: 0;
     margin-bottom: 0;
     border: none;    
     border-radius: 8px;
@@ -86,8 +97,8 @@ img.sneakPic {
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 45%);
 
     position: absolute;
-    top: 40px;
-    right: 40px;
+    top: 35px;
+    right: 35px;
     margin: 0;
     
 }

@@ -1,5 +1,4 @@
 .generator-form {
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -38,10 +37,11 @@
     border-radius: 7px;
     margin: 0;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 12%);
+    transition: all 150ms ease-in-out;
 }
 .clicked {
-    background-color: rgb(245, 243, 243);
-    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+    background-color: rgb(192, 187, 187);
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 45%);
 }
 
 .generator-form-btn {
@@ -57,10 +57,18 @@
     height: 40px;
     box-sizing: border-box;
     text-align: center;
-    transition: all 200ms ease;
+    transition: all 200ms ease-in-out;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 45%);
 }
 
 .generator-form-btn:hover {
     opacity: 0.5;
+}
+
+.diet:hover {
+    transform: scale(1.1);
+}
+
+.diet img {
+    width: 55px;
 }

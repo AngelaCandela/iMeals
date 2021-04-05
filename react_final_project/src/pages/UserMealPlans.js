@@ -4,6 +4,7 @@ import UserMealPlansList from '../components/UserMealPlansList';
 import Footer from '../components/Footer';
 
 function UserMealPlans() {
+    
   return (
     <div className="user-mealplans-main-container">
         <Nav />

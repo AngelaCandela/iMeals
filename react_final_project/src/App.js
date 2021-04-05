@@ -8,7 +8,6 @@ import UserMealPlans from "./pages/UserMealPlans";
 import Recipes from "./pages/Recipes";
 import RecipeDetails from "./pages/RecipeDetails";
 
-
 function App() {
 
   return (

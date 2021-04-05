@@ -1,33 +1,26 @@
 .card {
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 12%);
+    padding-top: 40px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.card-circle {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: whitesmoke;
-    padding: 10px;
-    margin-top: 20px;
+.card-square-img {
+    width: 64px;
+    height: 64px;    
 }
 
 .icon-1 {
-    background-image: url(../images/cherries-icon.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url(../images/controls.png);
 }
 
 .icon-2 {
-    background-image: url(../images/cupcake-icon.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url(../images/refresh.png);
 }
 
 .icon-3 {
-    background-image: url(../images/lemon-icon.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url(../images/floppy-disk.png);
 }

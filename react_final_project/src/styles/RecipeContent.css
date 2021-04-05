@@ -14,3 +14,12 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+.ingredients-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ingredients-grid strong {
+    text-transform: capitalize;
+}

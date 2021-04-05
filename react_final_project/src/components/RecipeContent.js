@@ -58,27 +58,23 @@ export default function RecipeContent() {
                     <h4>Diets: </h4><p>{diets}</p>
                 </div>
             </div>
+            <h4><strong>Ingredients: </strong></h4>
+            <div className="ingredients-grid">
+                {recipe.ingredients.map((ingredient, index) => {
+                    return  <p key={index}><strong>{ingredient.ingredient}</strong>: {ingredient.amount} {ingredient.unit}</p>
+                    })
+                }
+            </div>
             <h4><strong>Method: </strong></h4>
             {
                 newMethod.map((step, index) => {
                     if(index !== 0)
                     return  <>
-                                <h5>Step {index}:</h5>
+                                <h5><strong>Step {index}:</strong></h5>
                                 <p>{step}</p>
                             </>
                 })
             }
-            <h4><strong>Ingredients: </strong></h4>
-            <table>
-                {recipe.ingredients.map((ingredient, index) => {
-                    return  <tr key={index}>
-                                <td>{ingredient.ingredient}</td>
-                                <td>{ingredient.amount}</td>
-                                <td>{ingredient.unit}</td>                                
-                            </tr>
-                    })
-                }
-            </table>
         </div>
            }  
         </>

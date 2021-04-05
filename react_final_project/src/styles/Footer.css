@@ -1,5 +1,5 @@
 footer {
-    width: 84%;
+    width: 68%;
     background-color: rgb(238, 169, 78);
     height: 60px;
     display: flex;
@@ -8,6 +8,7 @@ footer {
 
     position: absolute;
     bottom: 0;
+    z-index: 0;
 }
 
 footer>p {    

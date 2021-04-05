@@ -58,8 +58,8 @@ export default function MealPlan() {
             return response.json();
         })
         .then(response => {
-            console.log(response)
-            history.push("/my-plans")
+            console.log(response);
+            alert('Mealplan saved successfully!');
         }
         )
         .catch(error => console.log('Error: ', error)

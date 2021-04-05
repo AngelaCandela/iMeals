@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import "../styles/AuthContent.css";
 
 export default function SignupForm() {
@@ -25,7 +26,7 @@ export default function SignupForm() {
 
         fetch('http://localhost:8000/signup', {
             method: 'POST',
-            mode: 'cors',
+            cors: 'CORS',
             body: formData,
         })
         .then(response => {
@@ -55,7 +56,10 @@ export default function SignupForm() {
                 console.log('You are logged in! ', response);
                 localStorage.setItem('token', response.token);
 
-                history.push("/generator");
+                let decoded = jwt_decode(response.token);
+                console.log(decoded);
+                localStorage.setItem('user', decoded.username);
+                findUserFirstName(decoded.username);
             })
             .catch(error => console.log('Error: ', error)
             );
@@ -82,6 +86,28 @@ export default function SignupForm() {
     const handlePassword = (event) => {
         setPassword(event.target.value);
     }
+
+    const findUserFirstName = (username) => {
+
+        fetch('http://localhost:8000/find-user-first-name', {
+            method: 'POST',
+            cors: 'CORS',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username: username}),
+        })
+        .then(response => {
+            if(!response.ok)
+                throw new Error(`Something went wrong: ${response.statusText}`);
+            return response.json();
+        })
+        .then(response => {
+            localStorage.setItem('user_first_name', response);
+            history.push("/generator");
+        })
+        .catch(error => console.log('Error: ', error));
+    };
 
     return (
         <div className="auth-content">

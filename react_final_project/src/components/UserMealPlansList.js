@@ -1,7 +1,10 @@
 import "../styles/UserMealPlansList.css";
 import { useState, useEffect } from "react";
 import MealPlanRecipes from "./MealPlanRecipes";
-import ShoppingList from "./ShoppingList";
+import ShoppingList, { ComponentToPrint } from "./ShoppingList";
+
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
 export default function UserMealPlansList() {
 
@@ -10,6 +13,10 @@ export default function UserMealPlansList() {
     const [disabled, setDisabled] = useState(true);
     const [ingredients, setIngredients] = useState([]);
 
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+    });
 
     useEffect(() => {
         showUserMealplans();        
@@ -103,34 +110,46 @@ export default function UserMealPlansList() {
             return response.json();
         })
         .then(response => {
-            console.log(response)
+            console.log(response);
+            alert('Mealplan deleted successfully!');
             showUserMealplans();
             })
         .catch(error => console.log('Error: ', error));
-    }
+    }    
 
     return (
         <>
-            <div className="mealplans-list">
-                {mealplans.map((mealplan, index) => {
-                    return  <div className="mealplan-card" key={mealplan.id}>
-                                <div>
-                                    <div className="mealplan-header mb-4">
-                                        <h3>{localStorage.getItem('user_first_name')}'s Meal Plan {index+1}</h3>
-                                        <p>{reformatDate(mealplan.date.slice(0,10))}</p>
+            {mealplans.length !== 0 &&
+                <>
+                <div className="mealplans-list">
+                    {mealplans.map((mealplan, index) => {
+                        return  <div className="mealplan-card" key={mealplan.id}>
+                                    <div>
+                                        <div className="mealplan-header mb-4">
+                                            <h3>{localStorage.getItem('user_first_name')}'s Meal Plan {index+1}</h3>
+                                            <p>{reformatDate(mealplan.date.slice(0,10))}</p>
+                                        </div>
+                                        <MealPlanRecipes title="Breakfasts" recipes={mealplan.breakfasts}/>
+                                        <MealPlanRecipes title="Main meals" recipes={mealplan.mainMeals}/>
                                     </div>
-                                    <MealPlanRecipes title="Breakfasts" recipes={mealplan.breakfasts}/>
-                                    <MealPlanRecipes title="Main meals" recipes={mealplan.mainMeals}/>
+                                    <div className="mealplan-buttons">
+                                        <button type="button" className="mealplan-btn" id={mealplan.id} onClick={getShoppingList}>Shopping List</button>
+                                        <button type="button" className="mealplan-btn mealplan-delete-btn" id={mealplan.id} onClick={(e) => {if (window.confirm("Are you sure you want to delete this mealplan?")) deleteMealplan(e);} }>Delete</button>
+                                    </div>
                                 </div>
-                                <div className="mealplan-buttons">
-                                    <button type="button" className="mealplan-btn" id={mealplan.id} onClick={getShoppingList}>Shopping List</button>
-                                    <button type="button" className="mealplan-btn mealplan-delete-btn" id={mealplan.id} onClick={(e) => {if (window.confirm("Are you sure you want to delete this mealplan?")) deleteMealplan(e);} }>Delete</button>
-                                </div>
-                            </div>
-                })
-                }
-            </div>
-            <ShoppingList disabled={disabled} setDisabled={setDisabled} ingredients={ingredients}/>
+                    })
+                    }
+                </div>
+                <ShoppingList disabled={disabled} setDisabled={setDisabled} ingredients={ingredients} handlePrint={handlePrint}/>
+                <div style={{ display: "none" }}>
+                    <ComponentToPrint ref={componentRef} ingredients={ingredients}/>
+                </div>
+                </>
+            }
+            {mealplans.length === 0 && 
+                <div className="mealplan-card m-auto text-center">You haven't saved any mealplans yet.</div>            
+            }
         </>
+            
     )
 }

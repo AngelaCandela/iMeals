@@ -9,12 +9,10 @@ class Card {
 
     render(){
         return(
-        <div className="card text-center">
-            <div className="card-img-top d-flex justify-content-center">
-                <div className={"card-circle " + this.img}></div>
-            </div>
+        <div className="card">
+            <div className={"card-square-img " + this.img}></div>            
             <div className="card-body">
-                <h5 className="card-title">{this.title}</h5>
+                <h5 className="card-title text-center">{this.title}</h5>
                 <p className="card-text">{this.text}</p>
             </div>
         </div>
@@ -22,6 +20,6 @@ class Card {
     }
 }
 
-export const card1 = new Card ("icon-1", "First title", "First text");
-export const card2 = new Card ("icon-2", "Second title", "Second text");
-export const card3 = new Card ("icon-3", "Third title", "Third text");
+export const card1 = new Card ("icon-1", "Set your preferences", "Vegetarian? Gluten-free? You choose!");
+export const card2 = new Card ("icon-2", "Generate", "Create as many mealplans as you like.");
+export const card3 = new Card ("icon-3", "Save", "Like what you see? Save it to your profile.");

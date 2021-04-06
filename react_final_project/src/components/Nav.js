@@ -25,7 +25,7 @@ export default function Nav() {
     if(token) {
         return (
             <nav className="main-nav">
-                <a className="brand" href="#"><img src={logo} alt=""/></a>
+                <a className="brand" href="#" id="/" onClick={redirect}><img src={logo} alt="logo"/></a>
                 <ul>
                     <li><a href="#" id="/generator" onClick={redirect}>Home</a></li>
                     <li><a href="#" id="/my-plans" onClick={redirect}>My Plans</a></li>
@@ -36,9 +36,9 @@ export default function Nav() {
     }else {
         return (
             <nav className="main-nav">
-                <a className="brand" href="#"><img src={logo} alt=""/></a>
+                <a className="brand" href="#" id="/" onClick={redirect}><img src={logo} alt="logo"/></a>
                 <ul>
-                    <li><a href="#" id="/" onClick={redirect}>Home</a></li>                
+                    <li><a href="#" id="/generator" onClick={redirect}>Home</a></li>                
                     <li><a href="#" id="/login" onClick={redirect}>Login</a></li>
                     <li><a href="#" id="/signup" onClick={redirect}>Sign Up</a></li>
                 </ul>                

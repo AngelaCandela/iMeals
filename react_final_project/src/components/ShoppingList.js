@@ -31,7 +31,6 @@ export class ComponentToPrint extends React.PureComponent {
             {
                 this.props.ingredients.map((ingredient, index) => {
                     return  <li className="to-print-list-item" key={index}>
-                              <input className="mx-2" type="checkbox"/>
                               <strong>{ingredient.ingredient}</strong>   {ingredient.amount} {ingredient.unit}
                             </li>
                     

@@ -9,7 +9,7 @@ function UserMealPlans() {
     <div className="user-mealplans-main-container">
         <Nav />
         <UserMealPlansList />        
-        <Footer />
+        <Footer className="user-mealplans-footer"/>
     </div>
   );
 }

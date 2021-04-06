@@ -126,8 +126,8 @@ export default function UserMealPlansList() {
                         return  <div className="mealplan-card" key={mealplan.id}>
                                     <div>
                                         <div className="mealplan-header mb-4">
-                                            <h3>{localStorage.getItem('user_first_name')}'s Meal Plan {index+1}</h3>
-                                            <p>{reformatDate(mealplan.date.slice(0,10))}</p>
+                                            <h3>{/* {localStorage.getItem('user_first_name')}'s  */}Meal Plan #{index+1}</h3>
+                                            <p>created: {reformatDate(mealplan.date.slice(0,10))}</p>
                                         </div>
                                         <MealPlanRecipes title="Breakfasts" recipes={mealplan.breakfasts}/>
                                         <MealPlanRecipes title="Main meals" recipes={mealplan.mainMeals}/>

@@ -1,11 +1,15 @@
 .recipe-details-main-container {
-    padding: 30px 8% 0 8%;
+    padding: 30px 16% 0 16%;
     height: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;;
+    justify-content: space-between;
     background-color: whitesmoke;
+    /* background-image: url('../images/pexels-andreea-ch-1166644.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover; */
     position: relative;
 }
 

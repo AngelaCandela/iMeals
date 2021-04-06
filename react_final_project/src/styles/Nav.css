@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px 10px;
+    padding: 0 30px;
     border-radius:7px;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 12%);
 
@@ -24,14 +24,18 @@
     list-style: none;
 }
 
-.main-nav a {
-    padding-left: 20px;
-    color: white;
-    font-size: larger;
+.main-nav a.brand {
+    padding-left: 0px;
 }
 
-nav a.brand img {
-    width: 55px;
+.main-nav a.brand img {
+    height: 80px;
+}
+
+.main-nav a {
+    color: white;
+    font-size: larger;
+    padding-left: 20px;
 }
 
 nav a:hover {

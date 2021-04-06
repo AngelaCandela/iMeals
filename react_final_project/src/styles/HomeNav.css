@@ -1,10 +1,9 @@
 .home-nav {    
     background-color: #a6c591;
-    /* background-color: #bfa691; */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px 10px;
+    padding: 0 30px;
     border-radius:7px;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 12%);
 }
@@ -18,14 +17,18 @@
     list-style: none;
 }
 
-.home-nav a {
-    padding-left: 20px;
-    color: white;
-    font-size: larger;
+.home-nav a.brand {
+    padding-left: 0px;
 }
 
-nav a.brand {
-    font-size: 1.5em
+.home-nav a.brand img {
+    height: 80px;
+}
+
+.home-nav a {
+    color: white;
+    font-size: larger;
+    padding-left: 20px;
 }
 
 nav a:hover {

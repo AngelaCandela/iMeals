@@ -53,12 +53,15 @@ export default function RecipeContent() {
             <div className="recipe-top-info">
                 <img className="recipe-img" src={'http://localhost:8000/recipes/'+recipe.img} alt="img"/>
                 <div className="recipe-details">
-                    <h4>Prep: </h4><p>{recipe.prepTime} minutes</p>
-                    <h4>Serves: </h4><p>1 person</p>
-                    <h4>Diets: </h4><p>{diets}</p>
+                    <h4><strong>Recipe details: </strong></h4>
+                    <hr/>
+                    <p><strong>Prep: </strong>{recipe.prepTime} minutes</p>
+                    <p><strong>Serves: </strong>1 person</p>
+                    <p><strong>Suitable for: </strong>{diets}</p>
                 </div>
             </div>
             <h4><strong>Ingredients: </strong></h4>
+            <hr/>
             <div className="ingredients-grid">
                 {recipe.ingredients.map((ingredient, index) => {
                     return  <p key={index}><strong>{ingredient.ingredient}</strong>: {ingredient.amount} {ingredient.unit}</p>
@@ -66,12 +69,13 @@ export default function RecipeContent() {
                 }
             </div>
             <h4><strong>Method: </strong></h4>
+            <hr/>
             {
                 newMethod.map((step, index) => {
                     if(index !== 0)
                     return  <>
-                                <h5><strong>Step {index}:</strong></h5>
-                                <p>{step}</p>
+                                <h5 className="method-step"><strong>Step {index}:</strong></h5>
+                                <p className="method-step">{step}</p>
                             </>
                 })
             }

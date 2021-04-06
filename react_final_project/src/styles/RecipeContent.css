@@ -5,8 +5,8 @@
     padding: 20px;
 }
 
-.recipe-img {    
-    padding: 0 20px 20px 0;
+.recipe-img {
+    padding: 12px 20px 20px 0;
 }
 
 .recipe-top-info {
@@ -18,8 +18,13 @@
 .ingredients-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    margin-left: 20px;
 }
 
 .ingredients-grid strong {
     text-transform: capitalize;
+}
+
+.method-step {
+    margin-left: 20px;
 }
